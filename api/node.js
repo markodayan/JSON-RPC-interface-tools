@@ -3,7 +3,7 @@ require('dotenv').config();
 
 // will set up some arg flags to configure whatever method you are going to use to connect to an Ethereum client
 const baseRequest = axios.create({
-  baseURL: process.env.INFURA_URL || process.env.ALCHEMY_URL
+  baseURL: process.env.NODE_CLIENT_URL
 });
 
 const config = {
