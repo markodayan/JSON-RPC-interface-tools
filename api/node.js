@@ -19,7 +19,7 @@ const node = async (method, ...params) => {
     method,
     params,
   };
-
+  
   let { data } = await baseRequest.post('', body, config)
 
   return data;
