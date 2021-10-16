@@ -1,8 +1,10 @@
 const chai = require('chai');
 const assert = chai.assert;
+const expect = chai.expect;
+const should = chai.should;
 const { hexToDecimalArg, decimalToHexArg } = require('../utils/conversions');
 
-describe('Conversion Utilities', function () {
+describe('Conversion Utilities (required to create valid argument parameters for JSON-RPC methods)', function () {
   describe('#hexToDecimalArg', function () {
     const opt_1 = '0x10';
     const opt_2 = '0xff'; 
@@ -28,13 +30,7 @@ describe('Conversion Utilities', function () {
     });
   });
 
-  describe('#decimalToHexArg', function () {
-    
-    const opt_2 = '12965000'; 
-    const opt_3 = 'hello world';
-    const opt_5 = '13422422';
-    const opt_6 = '';
-    
+  describe('#decimalToHexArg', function () {   
     it ('should convert a decimal number type to a hexadecimal string with 0x prefix', () => {
       const opt_1 = 12965000;
       const opt_2 = 13422422;
@@ -63,6 +59,13 @@ describe('Conversion Utilities', function () {
       assert.equal(res_2, '0xcccf56');
     });
 
+    it ('should throw an error because it is an invalid input to decimalToHexArg()', () => {
+      const opt_1= 'hello world';
+      const opt_2 = '';
 
-  })
+      expect(() => decimalToHexArg(opt_1)).to.throw('Invalid decimal string/number input');
+      expect(() => decimalToHexArg(opt_2)).to.throw('Invalid decimal string/number input');
+    });
+
+  });
 });
