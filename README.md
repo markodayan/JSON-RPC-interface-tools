@@ -49,8 +49,15 @@ To connect to an Ethereum full node (be it via Infura, Alchemy or one in your lo
 2. <b>Learn how libraries together with dapps, wallets and other tooling providers parse EVM blockchain data to serve it to end users and how they sanitise </b>
 
 - (todo): add REST API that serves as buffer zone between a user and the JSON-RPC API
+- (todo): Postman docgen
 
 <br>
+
+---
+
+## Postman Collection Docgen (Live on Netlify)
+
+View my Postman collection docgen of HTTP requests [over here](https://ethereum-json-rpc.netlify.app/). There are plenty are JSON application bodies that will provide you with a valid query to an Ethereum node. so you can simply make a POST request with one of these bodies and experiment with the JSON-RPC API.
 
 ---
 

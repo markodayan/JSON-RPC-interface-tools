@@ -21,16 +21,43 @@ function hexWeiToGwei (hexString) {
 }
 
 /**
- * Convert hexadecimal gas amount to decimal number type
+ * Convert hexadecimal intger amount (e.g. total gas) to decimal number type
  * @param {string} hexString -e.g. '0x5208'
  * @returns {number} - gas amount - e.g. 21000 gas 
  */
-function hexGasToDecimal (hexString) {
+function hexIntegerToDecimal (hexString) {
   return parseInt(hexString, 16);
-} 
+}
+
+/**
+ * 
+ * @param {object} block - block object with fields (baseFeePerGas, difficulty, extraData, gasLimit, gasUsed, hash, logsBloom, miner, mixHash, nonce, number, parentHash, receiptsRoot, sha3Uncles, size, stateRoot, timestamp, totalDifficulty, transactions: <Array{}>, transactionsRoot, uncles)
+ * @returns {object} - block with parsed hex fields (for certain ones)
+ */
+function standardizeBlock (block) {
+  let standardized = {
+    number: hexIntegerToDecimal(block.number),
+    difficulty: hexIntegerToDecimal(block.difficulty),
+    gasLimit: hexIntegerToDecimal(block.gasLimit),
+    gasUsed: hexIntegerToDecimal(block.gasUsed),
+    hash: block.hash,
+    miner: block.miner,
+    nonce: hexIntegerToDecimal(block.nonce),
+    transactionsRoot: block.transactionsRoot,
+    stateRoot: block.stateRoot,
+    receiptsRoot: block.receiptsRoot
+  }
+
+  if(block.baseFeePerGas){
+    standardized.baseFeePerGas = hexWeiToGwei(block.baseFeePerGas);
+  }
+
+  return standardized;
+}
 
 module.exports = {
   hexWeiToEther,
   hexWeiToGwei,
-  hexGasToDecimal
+  hexIntegerToDecimal,
+  standardizeBlock
 }

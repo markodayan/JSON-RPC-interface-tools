@@ -46,10 +46,10 @@ describe('Read Utilities (end-user and business logic)', function () {
     })
   });
 
-  describe('#hexGasToDecimal', function () {   
+  describe('#hexIntegerToDecimal', function () {   
     it ('should convert 0x5498 gas amount to its decimal value', () => {
       let opt_1 = '0x5498'; // quoted result from simple ETH tx transfer gas estimation (21656 gas)
-      let result = read.hexGasToDecimal(opt_1);
+      let result = read.hexIntegerToDecimal(opt_1);
       assert.typeOf(result, 'number');
       assert.equal(result, 21656);
     });
