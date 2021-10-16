@@ -1,8 +1,6 @@
 const axios = require('axios');
 require('dotenv').config();
 
-console.log(process.env.INFURA_URL);
-
 // will set up some arg flags to configure whatever method you are going to use to connect to an Ethereum client
 const baseRequest = axios.create({
   baseURL: process.env.INFURA_URL || process.env.ALCHEMY_URL
@@ -22,7 +20,9 @@ const node = async (method, ...params) => {
     params,
   };
 
-  return await baseRequest.post('', body, config);
+  let { data } = await baseRequest.post('', body, config)
+
+  return data;
 } 
 
 module.exports = node;
