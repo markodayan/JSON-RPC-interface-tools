@@ -1,5 +1,13 @@
 const createRPCMethod = require('../api/node');
 
+/**
+ * Returns the account and storage values of the specified account including the Merkle-proof
+ * JSON-RPC Params:
+ *  - 1) Address 
+ *  - 2) Array of storage-keys to be proofed 
+ *  - 3) Block number (or key word)
+ * @returns {Promise<Object>}
+ */
 const getProof = async () => {
   return await createRPCMethod('eth_getProof',
     '0x7F0d15C7FAae65896648C8273B6d7E43f58Fa842',
@@ -8,6 +16,11 @@ const getProof = async () => {
   );
 }
 
+/**
+ * Returns the client version 
+ * JSON-RPC Params: none
+ * @returns {Promise<Object>}
+ */
 const getClientVersion = async () => {
   return await createRPCMethod('web3_clientVersion');
 }
@@ -167,6 +180,22 @@ const estimateGas = async () => {
   );
 }
 
+/**
+ * Execute a new message call immediately without creating a transaction on the blockchain. 
+ * We can use this method to read from the blockchain (including executing smart contracts), but does not publish anything to the blockchain.
+ * 
+ * JSON-RPC Params: 
+ *   1)
+*  -   i) Address of transaction sender (from)
+ * -  ii) Address of transaction destination (to)
+ * - iii) Gas provided for the transaction execution (gas)
+ * -  iv) Gas price selected for this transaction (gasPrice)
+ * -   v) Value to be sent with transaction (value)
+ * -  vi) Hash of the method signature and encoded parameters (data)
+ * 
+ *  2) block number (or string constant 'latest', 'earliest', 'pending')
+ * @returns {Promise<Object>}
+ */
 const createMessageCall = async () => {
   return await createRPCMethod('eth_call', 
     {

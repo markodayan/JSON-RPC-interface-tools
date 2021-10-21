@@ -3,7 +3,7 @@ const constants  = require('../constants/index');
 // Utility methods to interpret results from a JSON-RPC response for the sake of human-readability required by either a direct user or business logic which does not require to speak in hex/encoded formats
 
 /**
- * Parse 
+ * Parse block data from JSON-RPC raw block response
  * @param {object} block - block object with fields (baseFeePerGas, difficulty, extraData, gasLimit, gasUsed, hash, logsBloom, miner, mixHash, nonce, number, parentHash, receiptsRoot, sha3Uncles, size, stateRoot, timestamp, totalDifficulty, transactions: <Array{}>, transactionsRoot, uncles)
  * @returns {object} - block with parsed hex fields (for certain ones)
  */
