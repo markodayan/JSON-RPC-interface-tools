@@ -120,7 +120,7 @@ const uninstallFilter = async () => {
 }
 
 // Only works for Alchemy
-const createPendingTransactionFilter = async () => {
+const newPendingTransactionFilter = async () => {
   return await createRPCMethod('eth_newPendingTransactionFilter');
 }
 
@@ -283,7 +283,7 @@ module.exports = {
   getLogs,
   getFilterChanges,
   uninstallFilter,
-  createPendingTransactionFilter,
+  newPendingTransactionFilter,
   getFilterLogs,
   createBlockFilter,
   createNewFilter,
